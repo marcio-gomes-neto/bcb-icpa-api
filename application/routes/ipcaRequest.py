@@ -40,7 +40,7 @@ def getIpcaValues():
         return jsonify({'values': ipcaValues, 'type': 'json', 'startDate': startDate, 'finalDate': finalDate})
 
     if format == 'excel':
-        return jsonify({'values': ipcaValues, 'type': 'json', 'startDate': startDate, 'finalDate': finalDate})
+        return jsonify({'values': ipcaValues, 'type': 'excel', 'startDate': startDate, 'finalDate': finalDate})
 
 @ipcaRequestRoute.route('/ipca/downloadExcel')
 @cross_origin(supports_credentials=True)
