@@ -3,7 +3,6 @@ sys.path.insert(1, os.path.abspath(os.getcwd()) + '/application/routes')
 import bcbRequest, index, ipcaRequest
 
 from flask import Flask
-from .extensions import mongo
 
 
 def create_app():
