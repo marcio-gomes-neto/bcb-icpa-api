@@ -1,10 +1,17 @@
+import os
+
 from pymongo import MongoClient
 from flask import jsonify
 from datetime import datetime
+from dotenv import load_dotenv
 
+import os
+
+load_dotenv()
+mongo_url = os.getenv('mongo_db_url')
 class Database:
     def __init__(self):
-        self.client = MongoClient("mongodb+srv://admin:admin@cursojs.awfzm.mongodb.net/?retryWrites=true&w=majority")
+        self.client = MongoClient(mongo_url)
         self.ipcaCollection = self.client["fullstack-challenge"]["ipca"]
 
     def getAllIpcaValues(self):
