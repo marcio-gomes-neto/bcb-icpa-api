@@ -19,7 +19,7 @@ def getIpcaValues():
 
     if None in (finalDate, startDate, format):
         return jsonify("finalDate, startDate and format cannot be null"), 400
-    if format != 'json' and 'excel':
+    if format != 'json' and format != 'excel':
         return jsonify("format must be json or excel"), 400
 
     try:
