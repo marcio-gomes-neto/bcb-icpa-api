@@ -6,3 +6,4 @@ pandas
 pymongo
 dnspython
 xlwt
+flask-cors

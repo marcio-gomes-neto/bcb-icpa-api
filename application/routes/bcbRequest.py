@@ -1,6 +1,8 @@
 from flask import Blueprint, jsonify
+from flask_cors import cross_origin
 from datetime import date, datetime
 from application.repository.databaseService import Database
+
 import requests
 
 bcbRequestRoute = Blueprint('bcbRequest', __name__)
@@ -8,10 +10,12 @@ databaseService = Database()
 
 
 @bcbRequestRoute.route('/bcb')
+@cross_origin(supports_credentials=True)
 def index():
     return jsonify('BCB REQUESTS ROUTES')
 
 @bcbRequestRoute.route('/bcb/getIpcaDataFromBcb')
+@cross_origin(supports_credentials=True)
 def getAllIPCAData():
     today = date.today()
     url = 'https://api.bcb.gov.br/dados/serie/bcdata.sgs.433/dados?formato=json&dataInicial=01/01/1500&dataFinal=' + today.strftime("%d/%m/%Y")
@@ -19,6 +23,7 @@ def getAllIPCAData():
     return jsonify(response.json())
 
 @bcbRequestRoute.route('/bcb/upsertIpcaData')
+@cross_origin(supports_credentials=True)
 def upsertIpcaData():
     today = date.today()
     url = 'https://api.bcb.gov.br/dados/serie/bcdata.sgs.433/dados?formato=json&dataInicial=01/01/1500&dataFinal=' + today.strftime("%d/%m/%Y")

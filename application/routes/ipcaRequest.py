@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, request, Response
+from flask_cors import cross_origin
 from datetime import date, datetime
 from application.repository.databaseService import Database
 import requests
@@ -9,6 +10,7 @@ ipcaRequestRoute = Blueprint('ipcaRequest', __name__)
 databaseService = Database()
 
 @ipcaRequestRoute.route('/ipca/getIpcaValues')
+@cross_origin(supports_credentials=True)
 def getIpcaValues():
     args = request.args
     finalDate = args.get('finalDate')
@@ -41,6 +43,7 @@ def getIpcaValues():
         return jsonify({'values': ipcaValues, 'type': 'json', 'startDate': startDate, 'finalDate': finalDate})
 
 @ipcaRequestRoute.route('/ipca/downloadExcel')
+@cross_origin(supports_credentials=True)
 def excelDownload():
     args = request.args
     finalDate = args.get('finalDate')
@@ -71,6 +74,7 @@ def excelDownload():
 
 
 @ipcaRequestRoute.route('/ipca/downloadJson')
+@cross_origin(supports_credentials=True)
 def JSONDownload():
     args = request.args
     finalDate = args.get('finalDate')
